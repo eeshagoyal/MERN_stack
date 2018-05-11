@@ -1,17 +1,13 @@
-const express = require('express'); //common.js modules 
+const express = require('express'); 
+require('./services/passport');
+const authRoutes = require('./routes/authRoutes');
 
-// import express from 'express';
-// es2015 modules ?
 
 const app = express();
 
-app.get('/',(req,res) => {
-	res.send({hi : 'there'});
-});
+authRoutes(app);
+//can be written as 
+//require('./routes/authRoutes')(app);
 
 const PORT = process.env.PORT || 5000;
-/*environment variable 
-dnamically assigned port by heroku after deployment 
-or port 5000 for local development environment
-*/
 app.listen(PORT);
